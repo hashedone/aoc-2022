@@ -11,3 +11,7 @@ Lesson learned: don't trust anything you know about programming if it is 6am :D
 ## Day 2
 
 vid: https://youtu.be/kYK1MfTpxSk
+
+## Day 3
+
+vid: https://youtu.be/WjJFQtTR-Dw

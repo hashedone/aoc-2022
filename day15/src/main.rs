@@ -87,16 +87,9 @@ fn part2(entries: &[Entry]) -> i128 {
             let d = d + 1;
 
             let xmin = (x - d).max(0);
-            let xmax = (x + d).min(A);
             let ymin = (y - d).max(0);
-            let ymax = (y + d).min(A);
 
-            let l1 = (xmin..=(x - d + y - ymin).max(A)).map(move |px| (px, y - d + x - px));
-            let l2 = ((x + d - y + ymin).min(0)..=xmax).map(move |px| (px, y - d + px - x));
-            let l3 = (xmin..=(x - d + ymax - y).max(A)).map(move |px| (px, y + d - x + px));
-            let l4 = ((x + d - ymax + y).min(0)..=xmax).map(move |px| (px, y + d - px + x));
-
-            l1.chain(l2).chain(l3).chain(l4)
+            (xmin..=(x - d + y - ymin).max(A)).map(move |px| (px, y - d + x - px))
         })
         .filter(|(x, y)| (0..=A).contains(x) && (0..=A).contains(y))
         .find(|(x, y)| {

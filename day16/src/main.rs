@@ -86,24 +86,24 @@ fn build_distance_table(input: &[(i64, Tunnels)]) -> Vec<i64> {
     dists
 }
 
-pub fn next_permutation(nums: &mut [(usize, i64)]) -> bool {
-    use std::cmp::Ordering;
-    // or use feature(array_windows) on nightly
-    let last_ascending = match nums.windows(2).rposition(|w| w[0] < w[1]) {
-        Some(i) => i,
-        None => {
-            nums.reverse();
-            return false;
-        }
-    };
-
-    let swap_with = nums[last_ascending + 1..]
-        .binary_search_by(|n| nums[last_ascending].cmp(n).then(Ordering::Less))
-        .unwrap_err(); // cannot fail because the binary search will never succeed
-    nums.swap(last_ascending, last_ascending + swap_with);
-    nums[last_ascending + 1..].reverse();
-    true
-}
+// pub fn next_permutation(nums: &mut [(usize, i64)]) -> bool {
+//     use std::cmp::Ordering;
+//     // or use feature(array_windows) on nightly
+//     let last_ascending = match nums.windows(2).rposition(|w| w[0] < w[1]) {
+//         Some(i) => i,
+//         None => {
+//             nums.reverse();
+//             return false;
+//         }
+//     };
+//
+//     let swap_with = nums[last_ascending + 1..]
+//         .binary_search_by(|n| nums[last_ascending].cmp(n).then(Ordering::Less))
+//         .unwrap_err(); // cannot fail because the binary search will never succeed
+//     nums.swap(last_ascending, last_ascending + swap_with);
+//     nums[last_ascending + 1..].reverse();
+//     true
+// }
 
 fn part1(input: &[(i64, Tunnels)], dist_table: &[i64], start: usize) -> i64 {
     const TIME: i64 = 30;
@@ -196,7 +196,7 @@ fn part2(input: &[(i64, Tunnels)], dist_table: &[i64], start: usize) -> i64 {
 
     valves.sort_by_key(|idx| input[*idx].0);
 
-    let mut released: u32 = 0;
+    let mut released: u16 = 0;
     // (my_valve, el_valve, flow, my_time, el_time, force, added_valve)
     let mut stack: Vec<(usize, usize, i64, i64, i64, usize, usize)> =
         Vec::with_capacity(valves.len());

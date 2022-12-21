@@ -165,6 +165,7 @@ fn part2(descs: &[MonkeyDesc], states: Vec<MonkeyState>) -> usize {
 }
 
 fn main() {
+    println!("{}", 2 + 3);
     let (desc, states) = input();
 
     println!("Part 1: {}", part1(&desc, states.clone()));
